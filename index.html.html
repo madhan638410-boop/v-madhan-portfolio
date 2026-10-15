@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- TITLE: change the text below. It shows on the browser tab and in Google. -->
+<title>Madhan V | Web Developer</title>
+<meta name="description" content="Portfolio of Madhan V, an aspiring web developer from Vellore, Tamil Nadu.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== COLORS: change the purple here and the whole site updates ===== */
+:root{
+  --bg:#000000;
+  --purple:#b026ff;        /* main neon purple */
+  --purple-soft:#d58bff;   /* lighter purple for text accents */
+  --text:#f4eefc;
+  --muted:#a79bb8;
+  --glass:rgba(255,255,255,.045);
+  --glass-line:rgba(190,120,255,.22);
+  --display:'Sora','Segoe UI',system-ui,sans-serif;
+  --body:'Inter','Segoe UI',system-ui,sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--body);overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--purple-soft);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+section{padding:6rem 0}
+.sec-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:.6rem}
+.sec-sub{color:var(--muted);max-width:52ch;margin:0 0 2.5rem}
+
+/* Background glow blobs */
+.glow{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-1;opacity:.5;background:var(--purple)}
+.glow.g1{width:420px;height:420px;top:-120px;right:-100px;animation:drift 14s ease-in-out infinite alternate}
+.glow.g2{width:320px;height:320px;bottom:-100px;left:-120px;opacity:.28;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-40px,50px) scale(1.15)}}
+
+/* Navigation */
+header{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(0,0,0,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--glass-line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:800 1.25rem var(--display);letter-spacing:.02em}
+.logo span{color:var(--purple);text-shadow:0 0 18px var(--purple)}
+.links{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+.links a{color:var(--muted);font-size:.95rem;transition:color .3s,text-shadow .3s}
+.links a:hover{color:#fff;text-shadow:0 0 14px var(--purple)}
+.burger{display:none;background:none;border:1px solid var(--glass-line);color:var(--text);width:44px;height:44px;border-radius:12px;font-size:1.3rem;cursor:pointer}
+
+/* Buttons */
+.btn{display:inline-block;padding:.85rem 1.7rem;border-radius:999px;font:500 .98rem var(--body);border:1px solid var(--purple);transition:transform .3s,box-shadow .3s,background .3s;cursor:pointer}
+.btn.fill{background:var(--purple);color:#fff;box-shadow:0 0 24px rgba(176,38,255,.55)}
+.btn.line{background:transparent;color:var(--text)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 38px rgba(176,38,255,.8)}
+.btn.line:hover{background:rgba(176,38,255,.15)}
+
+/* Hero */
+#home{min-height:100svh;display:flex;align-items:center;padding-top:7rem}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:center}
+.hello{color:var(--purple-soft);margin:0 0 .8rem}
+h1{font-size:clamp(2.8rem,8vw,5.6rem);font-weight:800;letter-spacing:-.03em;text-shadow:0 0 40px rgba(176,38,255,.55)}
+.role{font:500 clamp(1.1rem,2.6vw,1.6rem) var(--display);color:var(--purple-soft);margin:1rem 0 1.2rem;min-height:2.2rem}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--purple-soft);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.intro{color:var(--muted);max-width:50ch;margin:0 0 2rem}
+.cta{display:flex;flex-wrap:wrap;gap:1rem}
+/* Photo / avatar */
+.photo{aspect-ratio:1;max-width:320px;margin-inline:auto;width:100%;border-radius:50%;padding:6px;background:conic-gradient(from 0deg,var(--purple),#3a0a66,var(--purple));box-shadow:0 0 70px rgba(176,38,255,.55);animation:spin 12s linear infinite}
+.photo>div{width:100%;height:100%;border-radius:50%;background:#07030c;display:grid;place-items:center;overflow:hidden;animation:spin 12s linear infinite reverse}
+.photo .initials{font:800 4.5rem var(--display);color:var(--purple-soft);text-shadow:0 0 30px var(--purple)}
+.photo img{width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Glass cards with a purple spotlight that follows the cursor */
+.card{position:relative;background:var(--glass);border:1px solid var(--glass-line);border-radius:22px;padding:1.8rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;transition:transform .35s,border-color .35s,box-shadow .35s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(176,38,255,.22),transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:var(--purple);box-shadow:0 0 36px rgba(176,38,255,.35)}
+.card:hover::before{opacity:1}
+.card>*{position:relative}
+.card h3{font-size:1.25rem;margin-bottom:.6rem}
+.card p{color:var(--muted);margin:0}
+.grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+/* About */
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:1.4rem}
+.about p{color:var(--muted);margin:0 0 1rem}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.facts span{display:block;color:var(--muted);font-size:.85rem}
+
+/* Skills */
+.tag{display:inline-block;margin-top:1rem;padding:.2rem .8rem;border-radius:999px;font-size:.8rem;border:1px solid var(--glass-line);color:var(--purple-soft)}
+.tag.learning{border-color:var(--purple);background:rgba(176,38,255,.14);box-shadow:0 0 14px rgba(176,38,255,.35)}
+
+/* Projects */
+.shot{height:150px;border-radius:14px;margin-bottom:1.2rem;display:grid;place-items:center;font:700 1.1rem var(--display);color:var(--purple-soft);background:linear-gradient(135deg,rgba(176,38,255,.28),rgba(0,0,0,.2));border:1px dashed var(--glass-line)}
+.shot img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.link-off{display:inline-block;margin-top:1rem;color:var(--muted);font-size:.9rem;border-bottom:1px dashed var(--muted)}
+.link-on{display:inline-block;margin-top:1rem;color:var(--purple-soft)}
+.card .btn{margin-top:1.2rem;padding:.75rem 1.5rem;min-height:46px}
+.contact-btns{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
+.contact-btns .btn{margin:0;min-height:48px}
+@media (max-width:820px){.contact-btns .btn{flex:1 1 100%;text-align:center}}
+
+/* Contact */
+.contact-list{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.contact-list a.card:hover h3{color:var(--purple-soft)}
+.social{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.social a{padding:.6rem 1.2rem;border-radius:999px;border:1px solid var(--glass-line);background:var(--glass);transition:.3s}
+.social a:hover{border-color:var(--purple);box-shadow:0 0 22px rgba(176,38,255,.5);transform:translateY(-3px)}
+footer{text-align:center;color:var(--muted);padding:2rem 0 3rem;border-top:1px solid var(--glass-line);font-size:.9rem}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Mobile */
+@media (max-width:820px){
+  .hero,.about{grid-template-columns:1fr}
+  .photo{order:-1;max-width:220px}
+  .burger{display:block}
+  .links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(0,0,0,.95);border-bottom:1px solid var(--glass-line);max-height:0;overflow:hidden;transition:max-height .4s}
+  .links.open{max-height:420px}
+  .links a{display:block;padding:1rem 1.5rem}
+  section{padding:4.5rem 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="logo">Madhan<span>.</span>V</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">☰</button>
+    <ul class="links" id="links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<!-- ================= HOME =================
+ To change the headline or intro, edit the text between the tags below.
+ To change the typing roles, edit the "roles" list in the script at the bottom. -->
+<section id="home">
+  <div class="wrap hero">
+    <div>
+      <p class="hello">Hi, I'm</p>
+      <h1>Madhan V</h1>
+      <div class="role"><span id="typed">Web Developer</span><span class="caret"></span></div>
+      <p class="intro">I build clean, fast and responsive websites for small businesses. I'm learning every day and enjoy turning ideas into pages people can use.</p>
+      <div class="cta">
+        <a class="btn fill" href="#projects">View my work</a>
+        <a class="btn line" href="#contact">Contact me</a>
+      </div>
+    </div>
+    <!-- ===== PHOTO =====
+     1. Put your photo in the same folder as index.html and name it photo.jpg
+     2. Delete the line <div class="initials">MV</div>
+     3. Remove the comment marks around the <img> line below. -->
+    <div class="photo"><div>
+      <div class="initials">MV</div>
+      <!-- <img src="photo.jpg" alt="Photo of Madhan V"> -->
+    </div></div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <h2 class="sec-title reveal">About me</h2>
+    <p class="sec-sub reveal">A little about who I am and where I'm headed.</p>
+    <div class="about">
+      <div class="card reveal">
+        <!-- Edit your story here -->
+        <p>I'm Madhan, an aspiring web developer from Vellore, Tamil Nadu. I enjoy building websites with HTML, CSS and JavaScript, and I'm growing my skills with each project.</p>
+        <p>My goal is to help local businesses get a clear, modern website that works well on phones and computers.</p>
+        <p>I'm open to freelance work, internships and chances to learn from a team.</p>
+      </div>
+      <ul class="facts reveal">
+        <li class="card"><span>Location</span>Vellore, Tamil Nadu, India</li>
+        <li class="card"><span>Focus</span>Front-end web development</li>
+        <li class="card"><span>Status</span>Learning and building</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS =================
+ To change a label, edit the text inside <span class="tag">. Use class="tag learning" for skills you are still learning,
+ and class="tag" for skills you are comfortable with. -->
+<section id="skills">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Skills</h2>
+    <p class="sec-sub reveal">The tools I use. The glowing tag shows what I'm still learning.</p>
+    <div class="grid">
+      <div class="card reveal"><h3>HTML</h3><p>Structuring clean, meaningful web pages.</p><span class="tag learning">Learning</span></div>
+      <div class="card reveal"><h3>CSS</h3><p>Layouts, responsive design and animations.</p><span class="tag learning">Learning</span></div>
+      <div class="card reveal"><h3>JavaScript</h3><p>Adding interaction and behavior to pages.</p><span class="tag learning">Learning</span></div>
+      <div class="card reveal"><h3>GitHub</h3><p>Saving code and publishing sites online.</p><span class="tag learning">Learning</span></div>
+      <div class="card reveal"><h3>VS Code</h3><p>My everyday editor for writing code.</p><span class="tag">Daily tool</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS =================
+ For each project:
+  - Change the title and description text.
+  - Add a screenshot: put the image in the same folder and replace <div class="shot">KM Travels</div> with
+    <div class="shot"><img src="km-travels.jpg" alt="KM Travels website"></div>
+  - Add the real link: replace the <span class="link-off">...</span> line with
+    <a class="link-on" href="https://YOUR-REAL-LINK" target="_blank" rel="noopener">Visit website ↗</a>
+ Only add a link when the project is really online. -->
+<section id="projects">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Projects</h2>
+    <p class="sec-sub reveal">Real websites I've built and published. Open them in a new tab to see how they look and work.</p>
+    <div class="grid">
+      <article class="card reveal">
+        <div class="shot">KM Travels</div>
+        <h3>KM Travels</h3>
+        <p>A travel business website with a clear layout for services and enquiries.</p>
+        <a class="btn fill" href="https://madhan638410-boop.github.io/km-travels-/" target="_blank" rel="noopener">Live Website</a>
+      </article>
+      <article class="card reveal">
+        <div class="shot">Sri Mobile Shop</div>
+        <h3>Sri Mobile Shop</h3>
+        <p>A mobile shop website designed to show the shop's products and contact details.</p>
+        <a class="btn fill" href="https://madhan638410-boop.github.io/sri-mobile-shop/" target="_blank" rel="noopener">Live Website</a>
+      </article>
+      <article class="card reveal">
+        <div class="shot">MSK Electrical</div>
+        <h3>MSK Electrical Contractor</h3>
+        <p>A professional website for an electrical contractor, built to explain services and build trust.</p>
+        <span class="link-off">Link coming soon</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Services</h2>
+    <p class="sec-sub reveal">What I can do for you.</p>
+    <div class="grid">
+      <div class="card reveal"><h3>Website development</h3><p>A new, mobile-friendly website built from scratch for your business or idea.</p></div>
+      <div class="card reveal"><h3>Website redesign</h3><p>A fresh, modern look for an old website, with better layout and readability.</p></div>
+      <div class="card reveal"><h3>Deployment</h3><p>Getting your finished website online so people can visit it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT =================
+ EMAIL: to change madhan638410@gmail.com, edit it in the Email card and the Email Me button.
+ PHONE / WHATSAPP: to change 6384102065, edit the tel: link, the wa.me link and the visible number. wa.me needs country code + number, no + or spaces (India: 91...).
+ SOCIAL LINKS: when you have a GitHub profile, add inside the contact-btns row:
+ <a class="btn line" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a> -->
+<section id="contact">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Contact</h2>
+    <p class="sec-sub reveal">Hiring a web developer or need a website for your business? Call, message or email me.</p>
+    <div class="contact-list">
+      <a class="card reveal" href="tel:+916384102065"><h3>Phone / WhatsApp</h3><p>6384102065</p></a>
+      <a class="card reveal" href="mailto:madhan638410@gmail.com"><h3>Email</h3><p>madhan638410@gmail.com</p></a>
+      <div class="card reveal"><h3>Location</h3><p>Vellore, Tamil Nadu, India</p></div>
+    </div>
+    <div class="contact-btns reveal">
+      <a class="btn fill" href="tel:+916384102065">Call Me</a>
+      <a class="btn fill" href="https://wa.me/916384102065" target="_blank" rel="noopener">WhatsApp Me</a>
+      <a class="btn line" href="mailto:madhan638410@gmail.com">Email Me</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="year"></span> Madhan V. Built with HTML, CSS and JavaScript.</footer>
+
+<script>
+/* Typing roles: edit the words inside the list, keep the quotes and commas */
+const roles = ["Web Developer", "Front-end Learner", "Website Builder"];
+const typed = document.getElementById("typed");
+let r = 0, c = roles[0].length, deleting = true;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tick(){
+  const word = roles[r];
+  typed.textContent = word.slice(0, c);
+  if(deleting){ c--; if(c < 0){ deleting = false; r = (r + 1) % roles.length; c = 0; } }
+  else { c++; if(c > roles[r].length){ deleting = true; c = roles[r].length; return setTimeout(tick, 1600); } }
+  setTimeout(tick, deleting ? 40 : 90);
+}
+if(!reduce) setTimeout(tick, 1800);
+
+/* Mobile menu */
+const burger = document.getElementById("burger"), links = document.getElementById("links");
+burger.addEventListener("click", () => {
+  const open = links.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  links.classList.remove("open"); burger.setAttribute("aria-expanded", false);
+}));
+
+/* Scroll reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add("show"); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* Card spotlight follows the pointer */
+document.querySelectorAll(".card").forEach(card => card.addEventListener("pointermove", e => {
+  const b = card.getBoundingClientRect();
+  card.style.setProperty("--mx", (e.clientX - b.left) + "px");
+  card.style.setProperty("--my", (e.clientY - b.top) + "px");
+}));
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
